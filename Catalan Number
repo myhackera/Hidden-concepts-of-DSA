@@ -1,0 +1,48 @@
+Applications :
+==============>>>
+
+-> Number of possible Binary Search Trees with n keys.
+-> Number of expressions containing n pairs of parentheses which are correctly matched. For n = 3, possible expressions are ((())), ()(()), ()()(), (())(), (()()).
+-> Number of ways a convex polygon of n+2 sides can split into triangles by connecting vertices.
+-> Number of full binary trees (A rooted binary tree is full if every vertex has either two children or no children) with n+1 leaves.
+-> Number of different Unlabeled Binary Trees can be there with n nodes.
+
+Recursive Solution 
+Catalan numbers satisfy the following recursive formula. 
+
+C(0) = 1  and C(n+1) = sum(i=0  to n) C(i)*C(n-i) for  n>=0       
+
+Solution 1.)
+============>>>
+
+def catalan(n):
+    # Base Case
+    if n <= 1:
+        return 1
+ 
+    # Catalan(n) is the sum
+    # of catalan(i)*catalan(n-i-1)
+    res = 0
+    for i in range(n):
+        res += catalan(i) * catalan(n-i-1)
+ 
+    return res
+    
+Solution 2.)
+============>>>
+
+def catalan(n):
+    if (n == 0 or n == 1):
+        return 1
+
+    catalan =[0]*(n+1)
+
+    catalan[0] = 1
+    catalan[1] = 1
+ 
+    for i in range(2, n + 1):
+        for j in range(i):
+            catalan[i] += catalan[j]* catalan[i-j-1]
+
+    return catalan[n]
+ 
